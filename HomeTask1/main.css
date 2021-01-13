@@ -2,7 +2,6 @@
 * {
     margin: 0;
     padding: 0;
-    /* border: 0; */
     outline: 0;
     font-size: 100%;
     vertical-align: baseline;
@@ -11,9 +10,11 @@
 
 :root{
     --primarycolor:#273d54;
-    --whitecolor:white;
+    --whitecolor:rgb(248, 246, 246);
     --buttoncolor:#c76451;
-    --graycolor:#707887
+    --graycolor:#707887;
+    --separator: #aba491;
+    --blackcolor:rgb(0, 0, 0);
 }
 
 header{
@@ -77,28 +78,28 @@ h2{
 #email1{
     padding: 5px;
     border-radius: 0;
-    border:2px solid black;
+    border:2px solid var(--blackcolor);
 }
 
 .subscribe{
-    background-color: black;
+    background-color: var(--blackcolor);
     color:white;
     display: inline-block;
-    border:1px solid black;
+    border:1px solid var(--blackcolor);
     cursor: pointer;
     padding: 5px;
     border-radius: 0;
-    border:1px solid black;
+    border:1px solid var(--blackcolor);
     
 }
 .subscribe:hover{
-    background-color: white;
-    color: black;
+    background-color: var(--whitecolor);
+    color: var(--blackcolor);
     
 }
 article{
     display: flex;
-    border-bottom: 1px solid #aba491;
+    border-bottom: 1px solid var(--separator);
     padding-bottom: 1rem;
     padding-top: 1rem;
     align-items: center;
@@ -144,7 +145,7 @@ h2.details{
 
 .continue{
     background-color: var(--buttoncolor);;
-    color: white;
+    color: var(--whitecolor);
     border:0ch;
     cursor: pointer;
     padding: 5px;
@@ -153,7 +154,7 @@ h2.details{
     border:1px solid var(--buttoncolor);
 }
 .continue:hover{
-    background-color: white;
+    background-color: var(--whitecolor);
     color: var(--buttoncolor);
     
 }
