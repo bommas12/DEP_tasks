@@ -9,7 +9,22 @@
  */
 
 function basicOp(operation, value1, value2) {
-    return eval(value1 + operation + value2)
+    const operators = {
+        '+': (number1, number2) => {
+            return number1 + number2;
+        },
+        '-': (number1, number2) => {
+            return number1 - number2;
+        },
+        '/': (number1, number2) => {
+            return number1 / number2;
+        },
+        '*': (number1, number2) => {
+            return number1 * number2;
+        }
+    }
+
+    return operators[operation](value1, value2);
 }
 
 console.log(basicOp('+', 4, 7)); //expected 11

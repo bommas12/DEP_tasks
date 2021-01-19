@@ -11,10 +11,10 @@ function rentalCarCost(numberOfDays) {
     const DISCOUNT_FOR_3DAYS = 20;
     let totalCost = numberOfDays * COST_PER_DAY;
     if (numberOfDays >= 7) {
-        return totalCost - DISCOUNT_FOR_7DAYS;
+        totalCost -= DISCOUNT_FOR_7DAYS;
     }
-    if (numberOfDays >= 3) {
-        return totalCost - DISCOUNT_FOR_3DAYS;
+    else if (numberOfDays >= 3) {
+        totalCost -= DISCOUNT_FOR_3DAYS;
     }
     return totalCost;
 }
