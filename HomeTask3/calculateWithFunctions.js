@@ -1,3 +1,4 @@
+//https://www.codewars.com/kata/calculating-with-functions
 /**
  * 
  * @param {number} num the number passed to return calculated value
@@ -5,11 +6,11 @@
  * 
  * @throws {error} if the return number accepts number function again like zero
  */
-const returnNumber = (num, func = (number) => number) => {
+const returnNumber = (num1, func = (num2) => num2) => {
     if (typeof func != "function") {
-        throw new Error("number can't process a number")
+        throw new Error("Operator not found between numbers");
     }
-    return func(num);
+    return func(num1);
 }
 
 function zero(fun) {
@@ -102,7 +103,7 @@ function demonstration() {
         console.log(seven(times(five())));//expected 35
         console.log(times(five()));//expected anonymus function
 
-        console.log(times(five(five())));//throws error number can't process number
+        console.log(times(five(five())));//throws error Operator not found between numbers
 
         console.log(five(dividedBy(zero())));//throws divisor can't be zero
     }

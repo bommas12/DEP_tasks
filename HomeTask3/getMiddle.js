@@ -1,3 +1,4 @@
+//https://www.codewars.com/kata/get-the-middle-character
 /**
  * Calculates and returns the middle part of string
  * @param {string} str the string from which you want the middle characters
@@ -6,9 +7,9 @@
  * @example getMiddle("test") returns "es", getMiddle("tests") returns "s"
  */
 function getMiddle(str) {
-    let strlen = str.length;
-    let numberOfCharacters = strlen % 2 == 0 ? 2 : 1;
-    let middleStr = str.substr((strlen - 1) / 2, numberOfCharacters);
+    const strlen = str.length;
+    const numberOfCharacters = strlen % 2 == 0 ? 2 : 1;
+    const middleStr = str.substr((strlen - 1) / 2, numberOfCharacters);
     return middleStr;
 }
 

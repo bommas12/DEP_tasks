@@ -1,3 +1,4 @@
+//https://www.codewars.com/kata/partition-on
 /**
  * 
  * @param {number} predicate the condition on which partioning should be done on
@@ -6,27 +7,26 @@
  * @returns {number} boundary- the index of the second partition's first element
  */
 function partitionOn(predicate, array) {
-    let truths = [], falses = [];
-    array.forEach(item => {
-        if (predicate(item)) {
-            truths.push(item);
-        }
-        else {
-            falses.push(item);
-        }
+    const result = array.reduce((obj, item) => {
+        obj[predicate(item) + "Array"].push(item);
+        return obj;
+    }, {
+        falseArray: [],
+        trueArray: []
     })
     array.splice(0, array.length);
-    array.push(...falses, ...truths);
-    return falses.length;
+    const { falseArray, trueArray } = result;
+    array.push(...falseArray, ...trueArray);
+    return falseArray.length;
 }
 
 /**
  * demonstartion
  */
-let items = [1, 2, 3, 4, 5, 6];
+const items = [1, 2, 3, 4, 5, 6];
 function isEven(n) { return n % 2 == 0 }
 
-let boundary = partitionOn(isEven, items);
+const boundary = partitionOn(isEven, items);
 
 console.log(boundary);//expected 3
 console.log(items.slice(0, boundary))//expected [1, 3, 5]

@@ -1,3 +1,4 @@
+//https://www.codewars.com/kata/word-count
 /**
  * Counts the words a given string contains
  * @param {string} str string in which the function should count words
