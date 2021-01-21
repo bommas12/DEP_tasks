@@ -8,7 +8,12 @@
  */
 function partitionOn(predicate, array) {
     const result = array.reduce((obj, item) => {
-        obj[predicate(item) + "Array"].push(item);
+        if (predicate(item)) {
+            obj["trueArray"].push(item);
+        }
+        else {
+            obj["falseArray"].push(item);
+        }
         return obj;
     }, {
         falseArray: [],
