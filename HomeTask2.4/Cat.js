@@ -3,7 +3,6 @@ var Cat = (function () {
     let count = 0;
     let totalweight = 0;
     function CatConstructor(name, weight) {
-
         if (!name || !weight) {
             throw new Error("name or weight is not provided");
         }
@@ -13,7 +12,7 @@ var Cat = (function () {
         this.weight = weight;
         Object.defineProperty(this, "weight", {
             get: function () {
-                return weight || 0;
+                return weight;
             },
             set: function (val) {
                 totalweight = totalweight - weight + val;
@@ -21,9 +20,9 @@ var Cat = (function () {
                 return weight;
             }
         });
-        CatConstructor.averageWeight = function () {
-            return totalweight / count;
-        }
+    }
+    CatConstructor.averageWeight = function () {
+        return totalweight / count;
     }
     return CatConstructor;
 }());
