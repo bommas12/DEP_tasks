@@ -4,7 +4,7 @@ function cache(func) {
     return (...args) => {
         //generates the key from arguments
         const key = args.reduce((ivalue, arg) => {
-            ivalue += JSON.stringify(arg);
+            ivalue += JSON.stringify(arg) + ",";
             return ivalue;
         }, "")
 
