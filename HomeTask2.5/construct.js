@@ -1,5 +1,5 @@
-function construct(Class) {
-    const fn = Class.bind.apply(Class, arguments);
+function construct(classRef) {
+    const fn = classRef.bind.apply(classRef, arguments);
     return new fn();
 }
 function Greeting(name) {
