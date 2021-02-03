@@ -1,0 +1,66 @@
+<!DOCTYPE html5>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="styles/main.css">
+    <title>Document</title>
+
+</head>
+
+<body>
+    <header class="main-header">
+        <div class="search-container">
+            <input id="search-input" label="Search" type="text" placeholder="Search"><button id="search-button">
+                <em class="fa fa-search"></em>
+            </button>
+        </div>
+    </header>
+    <section class="thumbnail-slider-container">
+        <ul class="thumbnail-slider">
+            <template id="list-item">
+                <article class="video-container">
+                    <a>
+                        <img src="https://i.ytimg.com/vi/4K7F5WjbEZ0/hqdefault.jpg" alt="thumbnail">
+                    </a>
+                    <h1 class="title">
+                        Title
+                    </h1>
+                    <p class="description">
+                        Description
+                    </p>
+                    <p class="author">
+                        Author
+                    </p>
+                    <p class="published-date">
+                        Date
+                    </p>
+                    <p class="count-of-views">
+                        viewCount
+                    </p>
+                </article>
+            </template>
+        </ul>
+    </section>
+    <section class="pagination">
+
+        <ul class="pagination-container">
+
+        </ul>
+
+    </section>
+    <script src="scripts/loadKeys.js"></script>
+    <script src="scripts/api.js"></script>
+    <script src="scripts/UrlGenerator.js"></script>
+    <script src="scripts/services.js"></script>
+    <script src="scripts/eventListeners.js"></script>
+    <script src="scripts/addVideoElement.js"></script>
+    <script src="scripts/addPagination.js"></script>
+    <script src="scripts/paginate.js"></script>
+    <script src="scripts/timeSince.js"></script>
+    <script src="scripts/getThumbnailData.js"></script>
+</body>
+
+</html>
