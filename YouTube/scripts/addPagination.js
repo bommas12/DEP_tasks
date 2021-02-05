@@ -5,7 +5,6 @@ function addPagination(items, itemsPerPage, totalPages) {
     const aRef = document.createElement("a");
     aRef.textContent = `${totalPages + i + 1}`;
     fragment.appendChild(aRef);
-
   });
   fragment.querySelector("a").className = "active";
   return fragment;
