@@ -23,7 +23,10 @@ function services(api, { statisticsURL, searchURL, nextURL }) {
     getNextPage: function () {
       const queryString = nextURL(q, nextPageToken);
       return api(queryString).then(
-        (data) => data.items,
+        (data) => {
+          nextPageToken = data.nextPageToken;
+          return data.items;
+        },
         (e) => Promise.reject(e)
       );
     },
