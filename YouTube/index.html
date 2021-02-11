@@ -20,30 +20,7 @@
     </header>
     <section class="thumbnail-slider-container">
         <ul class="thumbnail-slider">
-            <template id="list-item">
-                <li>
-                <article class="video-container">
-                    <a>
-                        <img src="https://i.ytimg.com/vi/4K7F5WjbEZ0/hqdefault.jpg" alt="thumbnail">
-                    </a>
-                    <h1 class="title">
-                        Title
-                    </h1>
-                    <p class="description">
-                        Description
-                    </p>
-                    <p class="author">
-                        Author
-                    </p>
-                    <p class="published-date">
-                        Date
-                    </p>
-                    <p class="count-of-views">
-                        viewCount
-                    </p>
-                </article>
-            </li>
-            </template>
+
         </ul>
     </section>
     <section class="pagination">
@@ -53,16 +30,40 @@
         </ul>
 
     </section>
+    <template id="list-item">
+        <li>
+            <article class="video-container">
+                <a>
+                    <img src="https://i.ytimg.com/vi/4K7F5WjbEZ0/hqdefault.jpg" alt="thumbnail">
+                </a>
+                <h1 class="title">
+                    Title
+                </h1>
+                <p class="description">
+                    Description
+                </p>
+                <p class="author">
+                    Author
+                </p>
+                <p class="published-date">
+                    Date
+                </p>
+                <p class="count-of-views">
+                    viewCount
+                </p>
+            </article>
+        </li>
+    </template>
     <script src="scripts/api.js"></script>
     <script src="scripts/UrlGenerator.js"></script>
     <script src="scripts/services.js"></script>
     <script src="scripts/loadKeys.js"></script>
     <script src="scripts/paginate.js"></script>
-    <script src="scripts/getThumbnailData.js"></script>
     <script src="scripts/eventListeners.js"></script>
     <script src="scripts/createVideoElement.js"></script>
     <script src="scripts/addVideoElements.js"></script>
     <script src="scripts/addPagination.js"></script>
+    <script src="scripts/index.js"></script>
 </body>
 
 </html>

@@ -10,10 +10,7 @@ async function paginate(event) {
     state.curPage == state.totalPages
   ) {
     state.curPage++;
-    const videosList = await service.getNextPage();
-    const videosIdList = videosList.map((videoItem) => videoItem.id.videoId);
-    const statisticsList = await service.getStatistics(videosIdList);
-    let results = getThumbnailData(videosList, statisticsList);
+    const results = await service.getNextPage();
     thumbnailSlider.appendChild(
       addVideoElements(
         thumbnailSlider.clientWidth,
