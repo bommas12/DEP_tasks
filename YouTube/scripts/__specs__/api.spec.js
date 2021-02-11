@@ -19,7 +19,6 @@ describe("testing the function API", () => {
       body: "body",
     };
     window.fetch = (param) => {
-      console.log(param);
       return new Promise((resolve, reject) => {
         return resolve(response);
       });

@@ -42,6 +42,7 @@ describe("createVideoElement:: ", () => {
     pTags[3].className = "count-of-views";
 
     const videoElement = createVideoElement(video, clone, 320);
-    console.log(videoElement);
+    const articleEle = videoElement.querySelector('article');
+    expect(articleEle.style.width).toBe('320px');
   });
 });

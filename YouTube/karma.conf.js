@@ -16,7 +16,7 @@ module.exports = function (config) {
     // list of files / patterns to exclude
     exclude: [
       "node_modules/",
-      "scripts/eventListeners.js",
+      "scripts/index.js",
       "scripts/paginate.js",
     ],
 

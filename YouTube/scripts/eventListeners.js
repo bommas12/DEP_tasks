@@ -19,46 +19,42 @@ const state = {
   totalPages: 0,
   thumbnailData: [],
 };
+const init = (searchVideos) => {
+  const searchButton = document.getElementById("search-button");
+  searchButton.addEventListener("click", async () => {
+    const searchInput = document.getElementById("search-input");
+    state.curPage = 1;
+    state.totalPages = 0;
+    state.thumbnailData = [];
+    state.thumbnailData = await searchVideos(searchInput.value);
+    const thumnailSlider = document.querySelector(".thumbnail-slider");
+    thumnailSlider.innerHTML = "";
+    console.log(thumnailSlider)
+    thumnailSlider.appendChild(
+      addVideoElements(
+        thumnailSlider.clientWidth,
+        state.thumbnailData,
+        breakPoints.active.items
+      )
+    );
+    thumnailSlider.style.transition = "transform 0.4s ease-in-out";
+    thumnailSlider.style.transform = "translateX(0px)";
 
-const searchButton = document.getElementById("search-button");
-searchButton.addEventListener("click", async () => {
-  const searchInput = document.getElementById("search-input");
-  state.curPage = 1;
-  state.totalPages = 0;
-  state.thumbnailData = [];
-
-  const { searchVideos, getStatistics } = service;
-  const videosList = await searchVideos(searchInput.value);
-  const videosIdList = videosList.map((videoItem) => videoItem.id.videoId);
-  const statisticsList = await getStatistics(videosIdList);
-  state.thumbnailData = getThumbnailData(videosList, statisticsList);
-
-  const thumnailSlider = document.querySelector(".thumbnail-slider");
-  thumnailSlider.innerHTML = "";
-  thumnailSlider.appendChild(
-    addVideoElements(
-      thumnailSlider.clientWidth,
+    const pageContainer = document.querySelector(".pagination-container");
+    pageContainer.innerHTML = "<a>left</a>";
+    const pages = addPagination(
       state.thumbnailData,
-      breakPoints.active.items
-    )
-  );
-  thumnailSlider.style.transition = "transform 0.4s ease-in-out";
-  thumnailSlider.style.transform = "translateX(0px)";
+      breakPoints.active.items,
+      state.totalPages
+    );
+    pageContainer.appendChild(pages);
+    pageContainer.innerHTML += "<a>right</a>";
+    state.totalPages += state.thumbnailData.length / breakPoints.active.items;
 
-  const pageContainer = document.querySelector(".pagination-container");
-  pageContainer.innerHTML = "<a>left</a>";
-  const pages = addPagination(
-    state.thumbnailData,
-    breakPoints.active.items,
-    state.totalPages
-  );
-  pageContainer.appendChild(pages);
-  pageContainer.innerHTML += "<a>right</a>";
-  state.totalPages += state.thumbnailData.length / breakPoints.active.items;
-
-  pageContainer.removeEventListener("click", paginate);
-  pageContainer.addEventListener("click", paginate);
-});
+    pageContainer.removeEventListener("click", paginate);
+    pageContainer.addEventListener("click", paginate);
+  });
+}
 
 window.onload = () => {
   if (window.innerWidth > breakPoints[3].width) {
