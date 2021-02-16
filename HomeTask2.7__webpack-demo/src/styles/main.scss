@@ -1,0 +1,97 @@
+@use 'colors.scss';
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap");
+* {
+  margin: 0;
+  padding: 0;
+  outline: 0;
+  font-size: 100%;
+  vertical-align: baseline;
+  font-family: "Roboto", sans-serif;
+}
+
+header {
+  background-color: colors.$primarycolor;
+  display: flex;
+  height: 15vh;
+  .titlebox {
+    padding: 10px;
+    margin: auto;
+    background-color: colors.$whitecolor;
+    text-align: center;
+    max-height: 80%;
+    border: 2px solid colors.$buttoncolor;
+    h1 {
+      font-size: x-large;
+    }
+
+    p {
+      font-size: x-small;
+    }
+  }
+}
+
+main {
+  display: block;
+  margin-bottom: 20px;
+  .heading {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 80%;
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+    font-weight: bold;
+    border-bottom: 1.5px solid colors.$graycolor;
+    margin: auto;
+    color: colors.$primarycolor;
+    a {
+      h2 {
+        font-size: x-large;
+        font-weight: 700;
+      }
+    }
+    a:hover {
+      cursor: pointer;
+    }
+
+    .search-container {
+      display: flex;
+      margin-top: 5px;
+    }
+    #search-input {
+      padding: 5px;
+      border-radius: 0;
+      border: 1px solid colors.$blackcolor;
+    }
+    .search-button {
+      background-color: colors.$blackcolor;
+      color: white;
+      display: inline-block;
+      border: 1px solid colors.$blackcolor;
+      cursor: pointer;
+      padding: 5px;
+      border-radius: 0;
+      border: 1px solid colors.$blackcolor;
+    }
+    .search-button:hover {
+      background-color: colors.$whitecolor;
+      color: colors.$blackcolor;
+    }
+  }
+}
+
+footer {
+  background-color: colors.$primarycolor;
+  text-align: center;
+  height: 2rem;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  color: colors.$whitecolor;
+}
+
+@media only screen and (max-width: 755px) {
+  section {
+    flex-direction: column;
+  }
+}
