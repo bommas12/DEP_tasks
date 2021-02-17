@@ -6,7 +6,4 @@ async function api(paramURL) {
       }
       return Promise.reject(response.body);
     })
-    .catch((error) => {
-      return Promise.reject(error);
-    });
 }

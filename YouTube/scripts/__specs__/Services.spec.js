@@ -1,5 +1,5 @@
-describe("Services fucntion", () => {
-  let spy, service, api, urlGen;
+describe("Services function:: ", () => {
+  let spyNext, api, urlGen, spySearch;
   const statisticsList = [
     {
       statistics: {
@@ -122,9 +122,35 @@ describe("Services fucntion", () => {
       BASE_URL: "baseURl",
     };
     urlGen = urlGenerator(config, 15);
-    spy = spyOn(urlGen, "nextURL");
+    spySearch = spyOn(urlGen, "searchURL");
+    spyNext = spyOn(urlGen, "nextURL");
     api = jasmine.createSpy();
-    service = services(api, urlGen);
+  });
+  beforeEach(() => {
+    api.and.returnValues(
+      new Promise((resolve) =>
+        resolve({ items: videosList, nextPageToken: "token" })
+      ),
+      new Promise((resolve) =>
+        resolve({ items: statisticsList, nextPageToken: "token" })
+      ),
+
+    )
+  })
+  it("searchVideos:: should get search videos", async () => {
+    const service = services(api, urlGen);
+    const videos = await service.searchVideos("js");
+    expect(videos).toEqual(result);
+    expect(spySearch).toHaveBeenCalledWith("js")
+  });
+
+  it("getNextPage:: should get nextPage videos", async () => {
+    const service = services(api, urlGen);
+    const videos = await service.getNextPage();
+    expect(videos).toEqual(result);
+    expect(spyNext).toHaveBeenCalledWith("", "");
+  });
+  it("getNextPage:: should get nextPage videos with same query called with getVideos and the token returned in next page token", async () => {
     api.and.returnValues(
       new Promise((resolve) =>
         resolve({ items: videosList, nextPageToken: "token" })
@@ -137,24 +163,16 @@ describe("Services fucntion", () => {
       ),
       new Promise((resolve) =>
         resolve({ items: statisticsList, nextPageToken: "token" })
-      )
+      ),
     )
+    const service = services(api, urlGen);
+    await service.searchVideos("js");
+    await service.getNextPage();
+    expect(spyNext).toHaveBeenCalledWith("js", "token");
   });
-
-  it("searchVideos:: should get search videos", async () => {
-    const videos = await service.searchVideos("js");
-    expect(videos).toEqual(result);
-  });
-
-  it("getNextPage:: should get nextPage videos", async () => {
-    const videos = await service.getNextPage();
-    expect(videos).toEqual(result);
-    // expect(spy).toHaveBeenCalledWith("js", "token");
-  });
-
 });
 
-describe("failure", () => {
+describe("services functions:: failure", () => {
   let service, api, err;
   beforeAll(() => {
     const config = {

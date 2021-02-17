@@ -5,7 +5,7 @@ const loadKeys = async () => {
     console.log("credentials retreived");
     return config;
   } catch (e) {
-    console.error(`${e.message} :: Added the env.json to your client`);
+    console.error(`${e.message} :: failed to add environment`);
   }
 };
 

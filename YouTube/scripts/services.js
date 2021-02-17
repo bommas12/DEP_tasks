@@ -36,32 +36,22 @@ function services(api, { statisticsURL, searchURL, nextURL }) {
   }
 
   return {
-    searchVideos: function (query) {
+    searchVideos: async function (query) {
       q = query;
       const queryString = searchURL(query);
-      return api(queryString).then(
-        (data) => {
-          nextPageToken = data.nextPageToken;
-          const videoIdsList = data.items.map((videoItem) => videoItem.id.videoId);
-          return getStatistics(videoIdsList).then((statistics) => {
-            return getThumbnailData(data.items, statistics);
-          }, (e) => Promise.reject(e))
-        },
-        (e) => Promise.reject(e)
-      );
+      const data = await api(queryString)
+      nextPageToken = data.nextPageToken;
+      const videoIdsList = data.items.map((videoItem) => videoItem.id.videoId);
+      const statistics = await getStatistics(videoIdsList)
+      return getThumbnailData(data.items, statistics);
     },
-    getNextPage: function () {
+    getNextPage: async function () {
       const queryString = nextURL(q, nextPageToken);
-      return api(queryString).then(
-        (data) => {
-          nextPageToken = data.nextPageToken;
-          const videoIdsList = data.items.map((videoItem) => videoItem.id.videoId);
-          return getStatistics(videoIdsList).then((statistics) => {
-            return getThumbnailData(data.items, statistics);
-          })
-        },
-        (e) => Promise.reject(e)
-      );
+      const data = await api(queryString);
+      nextPageToken = data.nextPageToken;
+      const videoIdsList = data.items.map((videoItem) => videoItem.id.videoId);
+      const statistics = await getStatistics(videoIdsList)
+      return getThumbnailData(data.items, statistics);
     },
   };
 }

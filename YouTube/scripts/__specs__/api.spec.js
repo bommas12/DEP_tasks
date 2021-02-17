@@ -3,49 +3,50 @@ describe("testing the function API", () => {
 
   let restore;
   beforeAll(() => {
-    restore = window.fetch;
+    restore = fetch;
   });
   afterAll(() => {
-    window.fetch = restore;
+    fetch = restore;
   });
+
   it("return the success response when passed the correct paramUrl", async () => {
     const response = {
       status: 201,
       json: () => {
-        return new Promise((resolve, reject) => {
+        return new Promise((resolve) => {
           resolve(result);
         });
       },
       body: "body",
     };
-    window.fetch = (param) => {
-      return new Promise((resolve, reject) => {
+    fetch = (param) => {
+      return new Promise((resolve) => {
         return resolve(response);
       });
     };
     const res = await api("paramUrl");
+    console.log(res)
     expect(res).toBe(result);
   });
 
-  it("rejects promise ", async () => {
+  it("rejects with a promise when statuscode not in success range", async () => {
     const response = {
       status: 301,
       json: () => {
-        return new Promise((resolve, reject) => {
+        return new Promise((resolve) => {
           resolve(result);
         });
       },
       body: "body",
     };
-    window.fetch = (param) => {
-      return new Promise((resolve, reject) => {
+    fetch = (param) => {
+      return new Promise((resolve) => {
         return resolve(response);
       });
     };
-    try {
-      await api("paramUrl");
-    } catch (e) {
-      expect(e).toBe(response.body);
-    }
+    api("paramUrl")
+      .catch(e => {
+        expect(e).toBe(response.body);
+      })
   });
 });
